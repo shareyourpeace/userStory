@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--
+to test angular you need ng-app = "MyApp
+-->
+<html ng-app = "MyApp">
+    <head>
+        <base href="/">
+        <title>User Story</title>
+        
+        <!--add bootstrap Library  for prototyping-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="custom.css" />
+
+        <!--add Angular cdn-->
+        <script type = "text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js">   
+        </script>
+        
+        <!--the below script lets ngRoute work  this is not built in so it has to be included here-->
+        <script type = "text/javascript" src ="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-route.min.js"></script>
+        <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    
+    
+        <!--Services-->
+        <script type="text/javascript" src="app/services/authService.js"></script>
+        <script type="text/javascript" src="app/services/userService.js"></script>
+        <script type="text/javascript" src="app/services/storyService.js"></script>
+        
+        
+        <!--Controllers-->
+        <script type="text/javascript" src="app/controllers/mainCtrl.js"></script> 
+        <script type="text/javascript" src="app/controllers/userCtrl.js"></script>
+        <script type="text/javascript" src="app/controllers/storyCtrl.js"></script>
+        
+        <!--Directives-->
+        <script type="text/javascript" src="app/directives/reverse.js"></script>
+        
+        <!--the below is required   app.routes.js uses appRoutes as a dependency-->
+        <script type="text/javascript" src="app/app.routes.js"></script>
+        <script type="text/javascript" src ="app/app.js"></script>
+        
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <!-- this is to check if the user is logged in or not and if not do something else  ng-if-->
+    
+    
+        
+        <!--i commented out the below; if i leave it in, i get both Hello User Story and Hello Home Page--> 
+        <!--<h1>Hello User Story</h1>-->
+        <!-- to get this output create app.js-->
+        <!--        {{ 2 + 2 }}-->
+        <!-- the child is home.html-->
+        <!--it will inherit from this page-->
+        <!--now it will render the home.html page rather than index.html-->
+
+        <!--add a container (bootstrap) for the login box-->
+<body ng-controller ="MainController as main">
+        <header>  
+            <div class ="navbar navbar-default">
+                <div class="container">
+                    <div class ="navbar-header">
+                        <a href ="/" class="navbar-brand"><span class="glyphicon glyphicon-book"></span>UserStory</a>
+                    </div>
+
+                    <ul class="nav navbar-nav">
+                        <!--return all the users-->
+                        <li><a href ="/users"></a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li ng-if="!main.loggedIn"><a href ="/login">Login</a></li>
+                        <li ng-if="!main.loggedIn"><a href ="/signup">Signup</a></li>
+                        <li ng-if="main.loggedIn"><a href ="#">Hello {{main.user.username}}</a></li>
+                        <li ng-if="main.loggedIn"><a href ="#" ng-click="main.doLogout()">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+
+<main class ="container">
+    <div ng-view></div>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!--copy and pasted the below from home.html-->
+ <!--delete the controller, the ng-if "main.loggedIn,  and the dive with the first panel before success-->
+ 
+<div class ="row">
+     <div class ="col-md-3">
+     </div>       
+         <div class ="col-md-4">
+            <div class ="row">
+                <div class="panel panel-success">
+                    <div class="panel-body" ng-repeat="each in story.stories">
+                        <p>each.content</p>
+<!--                        blablah-->
+                    </div>
+                    
+                </div>
+                
+                 <div class ="panel panel-success">
+                     <div class="panel-heading"> Your Story</div>
+                     <div class ="panel-body" ng-repeat ="each in story.stories">
+<!--                     <p>{{story.content}}</p>-->
+                        <p>{{each.content}}</p>
+                    </div>   
+                </div>
+            </div>
+        </div>     
+      <div class ="col-md-3">
+     </div>
+ </div>
